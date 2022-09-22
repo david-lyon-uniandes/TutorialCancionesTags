@@ -15,8 +15,8 @@ jobs:
     steps:
     - name: Crear rama
       run: |
-        git checkout -b release/v${{ github.event.inputs.versionName }}
-        git push -f -u origin release/v${{ github.event.inputs.versionName }}
+        git checkout -b release
+        git push -f -u origin release
   merge-develop-to-release:
     needs: create-release
     name: Merge develop -> release
@@ -27,7 +27,7 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         source-branch: develop
-        target-branch: release/v${{ github.event.inputs.versionName }}
+        target-branch: release
   test:
     needs: merge-develop-to-release
     name: Pruebas
@@ -70,5 +70,5 @@ jobs:
       uses: tukasz/direct-merge-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        source-branch: release/v${{ github.event.inputs.versionName }}
+        source-branch: release
         target-branch: main
