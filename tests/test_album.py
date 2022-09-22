@@ -32,6 +32,7 @@ class AlbumTestCase(unittest.TestCase):
         print("hhhhhh")
         print("hhhhhh")
         print("hhhhhh")
+        print("hhhhhh")
         self.coleccion.agregar_album("Clara luna", anio_album3, descripcion_album3, "CASETE")
         consulta1 = self.session.query(Album).filter(Album.titulo == titulo_album1).first()
         consulta2 = self.session.query(Album).filter(Album.id == 2).first()
