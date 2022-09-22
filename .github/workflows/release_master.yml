@@ -62,3 +62,14 @@ jobs:
       run: |
           coverage run -m unittest tests/*.py
           coverage report -m
+  merge-relase-to-main:
+    needs: test
+    name: Merge release -> main
+    runs-on: ubuntu-latest
+    steps:
+    - name: automerge
+      uses: tukasz/direct-merge-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        source-branch: release
+        target-branch: main
