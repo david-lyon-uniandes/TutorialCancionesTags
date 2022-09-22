@@ -18,3 +18,14 @@ jobs:
       run: |
         git checkout -b release
         git push -f -u origin release
+  merge-develop-to-release:
+    needs: create-release
+    name: Merge develop -> release
+    runs-on: ubuntu-latest
+    steps:
+    - name: automerge
+      uses: tukasz/direct-merge-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        source-branch: develop
+        target-branch: release
