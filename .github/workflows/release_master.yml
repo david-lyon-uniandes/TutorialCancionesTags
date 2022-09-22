@@ -2,7 +2,7 @@ name: CI Pipeline Release
 
 # Controls when the action will run. 
 on:
-  commit_comment:
+  push:
     branches: 
       - develop
     
