@@ -14,5 +14,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Crear rama
-      run: |
-        git checkout -b develop
