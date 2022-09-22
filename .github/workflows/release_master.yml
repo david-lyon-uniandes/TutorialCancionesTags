@@ -1,4 +1,4 @@
-name: CI
+name: CI Pipeline Release
 
 # Controls when the action will run. 
 on:
@@ -8,7 +8,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   merge-develop-to-feature:
-    if: ${{ contains(github.event.head_commit.message, 'PLEASE_MERGE') }}
+    if: ${{ contains(github.event.head_commit.message, 'PLEASE_MERGEddddd') }}
     name: Merge develop -> feature
     runs-on: ubuntu-latest
     steps:
