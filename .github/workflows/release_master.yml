@@ -7,9 +7,18 @@ on:
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  merge-develop-to-feature:
-    if: ${{ contains(github.event.head_commit.message, 'PLEASE_MERGEddddd') }}
-    name: Merge develop -> feature
+  create-release:
+    if: ${{ contains(github.event.head_commit.message, 'PLEASE_CREATE_RELEASE_AND_MERGE') }}
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Crear rama
+      run: |
+        git checkout -b release/v${{ github.event.inputs.versionName }}
+        git push -f -u origin release/v${{ github.event.inputs.versionName }}
+  merge-develop-to-release:
+    needs: create-release
+    name: Merge develop -> release
     runs-on: ubuntu-latest
     steps:
     - name: automerge
@@ -17,9 +26,9 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         source-branch: develop
-        target-branch: ${{ github.ref }}
+        target-branch: release/v${{ github.event.inputs.versionName }}
   test:
-    needs: merge-develop-to-feature
+    needs: merge-develop-to-release
     name: Pruebas
     runs-on: ubuntu-latest
     steps:
@@ -51,14 +60,14 @@ jobs:
       run: |
           coverage run -m unittest tests/*.py
           coverage report -m
-  merge-feature-to-develop:
+  merge-relase-to-main:
     needs: test
-    name: Merge feature -> develop
+    name: Merge release -> main
     runs-on: ubuntu-latest
     steps:
     - name: automerge
       uses: tukasz/direct-merge-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        source-branch: ${{ github.ref }}
-        target-branch: develop
+        source-branch: release/v${{ github.event.inputs.versionName }}
+        target-branch: main
