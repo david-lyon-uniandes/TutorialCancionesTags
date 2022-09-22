@@ -15,4 +15,4 @@ jobs:
     - name: Crear rama
       run: |
         git checkout -b release
-        git push -f -u origin rama
+        git push -f -u origin release
