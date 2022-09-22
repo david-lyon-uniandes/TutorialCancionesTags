@@ -27,6 +27,7 @@ class AlbumTestCase(unittest.TestCase):
         self.coleccion.agregar_album("Live Killers", 2013, descripcion_album2, "CASETE")
         anio_album3 = self.data_factory.year()
         descripcion_album3 = self.data_factory.sentence()
+        print("vsdfgasdvdasfasdfsaf")
         self.coleccion.agregar_album("Clara luna", anio_album3, descripcion_album3, "CASETE")
         consulta1 = self.session.query(Album).filter(Album.titulo == titulo_album1).first()
         consulta2 = self.session.query(Album).filter(Album.id == 2).first()
