@@ -63,3 +63,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         source-branch: ${{ github.ref }}
         target-branch: develop
+        commit-message: "PLEASE_CREATE_RELEASE_AND_MERGE"
