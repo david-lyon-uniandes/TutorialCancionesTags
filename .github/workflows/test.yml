@@ -29,3 +29,13 @@ jobs:
       run: |
           coverage run -m unittest tests/test_persona.py
           coverage report -m
+  merge-master-to-develop:
+    name: Merge master -> develop
+    runs-on: ubuntu-latest
+    steps:
+    - name: automerge
+      uses: tukasz/direct-merge-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        source-branch: develop
+        target-branch: master
