@@ -29,6 +29,8 @@ class AlbumTestCase(unittest.TestCase):
         descripcion_album3 = self.data_factory.sentence()
         print("ppppppp")
         print("ppppppp")
+        print("ppppppp")
+        print("ppppppp")
         self.coleccion.agregar_album("Clara luna", anio_album3, descripcion_album3, "CASETE")
         consulta1 = self.session.query(Album).filter(Album.titulo == titulo_album1).first()
         consulta2 = self.session.query(Album).filter(Album.id == 2).first()
