@@ -15,5 +15,4 @@ jobs:
     steps:
     - name: Crear rama
       run: |
-        git checkout -b rama
-        git push -f -u origin rama
+        git checkout -b develop
